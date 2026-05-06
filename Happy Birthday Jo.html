@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, Jo!</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Press Start 2P', cursive;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background:
+        linear-gradient(45deg, #ffc0cb 25%, transparent 25%),
+        linear-gradient(-45deg, #ffd6e0 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #ffb6c1 75%),
+        linear-gradient(-45deg, transparent 75%, #ffd1dc 75%);
+      background-size: 32px 32px;
+      background-color: #ffe4ec;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      position: relative;
+    }
+
+    .hint {
+      font-size: 10px;
+      color: #a64d79;
+      margin-bottom: 20px;
+      animation: blink 1.2s infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: .4; }
+    }
+
+    .envelope {
+      width: 220px;
+      height: 140px;
+      background: #ff69b4;
+      position: relative;
+      cursor: pointer;
+      image-rendering: pixelated;
+      box-shadow: 8px 8px 0 #c2185b;
+      transition: transform .2s ease;
+      margin: auto;
+    }
+
+    .envelope:hover {
+      transform: scale(1.05);
+    }
+
+    .envelope::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-left: 110px solid transparent;
+      border-right: 110px solid transparent;
+      border-top: 70px solid #ff8dc7;
+      z-index: 2;
+    }
+
+    .heart {
+      position: absolute;
+      top: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 24px;
+      z-index: 3;
+    }
+
+    .letter-box {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .letter-box.show {
+      display: flex;
+    }
+
+    .letter {
+      width: min(90vw, 700px);
+      max-height: 80vh;
+      overflow-y: auto;
+      background: #fff0f6;
+      border: 8px solid #ff69b4;
+      box-shadow: 12px 12px 0 #c2185b;
+      padding: 30px;
+      color: #7a2857;
+      line-height: 2;
+      font-size: 10px;
+      position: relative;
+      animation: popup .3s ease;
+    }
+
+    .pixel-stars {
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      border: none;
+      background: #ff69b4;
+      color: white;
+      padding: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 8px;
+    }
+
+    @keyframes popup {
+      from { transform: scale(.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .pixel-decor {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <p class="hint">CLICK THE ENVELOPE</p>
+    <div class="envelope" id="envelope">
+      <div class="heart">💖</div>
+    </div>
+  </div>
+
+  <div class="letter-box" id="letterBox">
+    <div class="letter">
+      <button class="close-btn" id="closeBtn">X</button>
+
+      <div class="pixel-stars">HAPPY BIRTHDAY</div>
+
+      <p>
+        Happiest birthday, Jo,<br><br>
+
+        Sobrang unexpected ng encounter natin, 'di natin expected na mutuals na pala tayo before sa old account mo. 
+        Nakakatuwang isipin na same tayo ng program and vibes, kaya naging close rin agad tayo. 
+        Hindi ko malilimutan yung mga bagay na nakwento natin na sobrang nakapagpasaya sa atin.
+        <br><br>
+
+        Alam mo, thankful ako dahil nakilala kita. At some point, medyo naging lively ako nung nakilala kita. 
+        Naging inspiration ko yung bawat ginagawa mo life and self love mo, 
+        kagaya na lang ng pag jogging and hanging out with friends. 
+        You really made me a new person since I met you. 
+        <br><br>
+
+        Btw sana mag enjoy ka sa araw mo, though 'di ko alam if may ganap ka pero goodluck sa mockup interview mo, 
+        alam kong kayang kaya mo 'yan, ikaw pa ba. 
+        Always remember na enjoy whatever you're doing sa life kasi we only live once. <br><br>
+
+        I wish you all the best and see you soon, Jo. Happiest birthday again to the prettiest girl, Jo!
+      </p>
+
+      <div class="pixel-stars">Sincerely yours,</div>
+      <div class="pixel-stars">El</div>
+    </div>
+  </div>
+
+  <script>
+    const envelope = document.getElementById('envelope');
+    const letterBox = document.getElementById('letterBox');
+    const closeBtn = document.getElementById('closeBtn');
+
+    envelope.addEventListener('click', () => {
+      envelope.style.visibility = 'hidden';
+      letterBox.classList.add('show');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      letterBox.classList.remove('show');
+      envelope.style.visibility = 'visible';
+    });
+
+    letterBox.addEventListener('click', (e) => {
+      if(e.target === letterBox) {
+        letterBox.classList.remove('show');
+        envelope.style.visibility = 'visible';
+      }
+    });
+  </script>
+
+</body>
+</html>
